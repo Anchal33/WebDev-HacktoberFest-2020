@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Simple Calculator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="calc.css" type="text/css">
+    </head>
+    <body>
+        
+        </p>
+        <div class="calc-container">
+            <div class="screen" id="screen">
+                <!--Screen of the calculator is here. Thanks-->
+                
+            </div>
+            <p class="title">Calculate</p>
+            <ul class="buttons">
+                
+                
+                <li id=" 1  "><button onclick="writeinscreen('1')">1</button></li>
+                <li id=" 2  "><button onclick="writeinscreen('2')">2</button></li>
+                <li id=" 3  "><button onclick="writeinscreen('3')">3</button></li>
+                <li id=" bs "><button onclick="writeinscreen('b')">del</button></li>
+                <li id=" 4  "><button onclick="writeinscreen('4')">4</button></li>
+                <li id=" 5  "><button onclick="writeinscreen('5')">5</button></li>
+                <li id=" 6  "><button onclick="writeinscreen('6')">6</button></li>
+                <li id=" 7  "><button onclick="writeinscreen('7')">7</button></li>
+                <li id=" 8  "><button onclick="writeinscreen('8')">8</button></li>
+                <li id=" 9  "><button onclick="writeinscreen('9')">9</button></li>
+                <li id=" 0  "><button onclick="writeinscreen('0')">0</button></li>
+                <li id=" +  "><button onclick="writeinscreen('+')">+</button></li>
+                <li id=" -  "><button onclick="writeinscreen('-')">-</button></li>
+                <li id=" x  "><button onclick="writeinscreen('x')">x</button></li>
+                <li id=" /  "><button onclick="writeinscreen('/')">/</button></li>
+                <li id=" AC  "><button onclick="writeinscreen('AC')">AC</button></li>
+                <li id=" .  "><button onclick="writeinscreen('.')">.</button></li>
+                <li id=" (  "><button onclick="writeinscreen('(')">(</button></li>
+                <li"><button  id="equal" onclick="writeinscreen('=')">=</button></li>
+                <li id=" )  "><button onclick="writeinscreen(')')">)</button></li>
+                <li ><button id="UP" onclick="showhistory('UP')">UP</button></li>
+                <li ><button id="DOWN" onclick="showhistory('DOWN')">DOWN</button></li>
+                
+                
+                
+            </ul>
+            
+        </div>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="calc.js" type="text/javascript" async defer></script>
+    </body>
+</html>
