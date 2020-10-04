@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<script>
+  function validatefname()
+  {var firstname=document.getElementById("fname").value;
+  var rel=/^[a-zA-Z\s\'\-]{2,20}$/;
+  if (rel.test(firstname)){
+     document.getElementById("fnamePrompt").style.color="Green";
+	 document.getElementById("fnamePrompt").innerHTML="valid";
+  }
+  else{
+     document.getElementById("fnamePrompt").style.color="Red";
+	 document.getElementById("fnamePrompt").innerHTML="enter 2-20 character long name";
+	 }
+  }
+  function validatelname()
+  {var lastname=document.getElementById("lname").value;
+  var rel=/^[a-zA-Z\s\'\-]{2,40}$/;
+  if (rel.test(lastname)){
+     document.getElementById("lnamePrompt").style.color="Green";
+	 document.getElementById("lnamePrompt").innerHTML="valid";
+  }
+  else{
+     document.getElementById("lnamePrompt").style.color="Red";
+	 document.getElementById("lnamePrompt").innerHTML="enter 2-40 character long name";
+	 }
+  }
+</script>
+<style>
+body{
+background-color:LemonChiffon;}
+ .images{
+  border-radius: 8px;}
+  .bio{
+  font-family:Candara;
+  color:blue;
+  font-size:150%}
+  #new{
+  font-family:Brush Script MT;
+  font-size:40px;}
+  .hea{
+  font-family:Lucida Handwriting;}
+  #wel{
+  font-family:Ink Free;
+  font-size:200%;}
+  #free{
+  font-family:MV Boli;
+  font-size:150%;}
+</style>
+<head>
+ <title>html finale form</title>
+</head>
+<body>
+<div style="width: 100%;">
+ <div style="width: 50%; height: 80px; float: left; background:LightSeaGreen;"> 
+ <p><h1> <span style="color:gold"><u>WWW.TARGET</u></span></h1></p>
+ <hr><p id="wel">Welcome to www.target which focuses on making your skills better </p></hr>
+ <div><span style="color:Crimson;font-size:200%">Develop your coding skills here</span></div>
+ <p><span style="color:red; font-size:300%">Hurry up !!<span><p>
+ <p id="new">a new course is starting soon.Limited seats<p>
+ <p class="bio">learn <b><u>React</b></u><p>
+ <p id="free">fully <b>free</b> course</p>
+ <p><em><span style="font-size:150%">offer valid during lockdown</span></em></p>
+ <p id="free">sign up fast..</p>
+ <br>
+ <img src="https://miro.medium.com/max/1396/1*SEvEngXO10-Obhz2XPW7SA.png"alt="react" width="500px" class="images">
+ <p><button><a href="https://reactjs.org/docs/getting-started.html">for more about React....</a> </button></p>
+ <br>
+ </div>
+<div style="margin-left: 50%; height: 490px; background:Moccasin;">
+<form id="myForm">
+<p class="hea">Register for <span style="color:green;font-size:100%">React :</span></p>
+<fieldset>
+<legend><em>Sign up:</em></legend>
+First name:<input name="fname" id="fname" type="text" onblur="validatefname();"><span id="fnamePrompt">&nbsp;</span><br><br>
+Last name:<input name="lname" id="lname" type="text" onblur="validatelname();"><span id="lnamePrompt">&nbsp;</span><br><br>
+E-mail id:<input type="email" name="email" id="email" placeholder="enter valid email id"required><br><br>
+Password:<input name="pw" id="pw" type="password" onblur="" required><br><br>
+Gender:<select name="gender" id="gender">
+     <option value="Male">Male</option>
+     <option value="Female">Female</option>
+	 <option value="Others">Others</option>
+	</select><br><br>
+upload your photo for certificate(jpeg):<input type="file" id="myfile" name="myfile" required><br><br>
+Birthday:<input name="birthday" id="birthday" type="date"required ><br><br>
+Contact number:<input name="no id="no" type="tel" placeholder="XXXX XXXXXX" pattern="[0-9]{4} [0-9]{6}" required><br><br>
+Level:<input type="radio" name="level" id="level">beginner 
+<input type="radio" name="level" id="level">mediocre
+<input type="radio" name="level" id="level">expert<br><br>
+   <input type="checkbox"id="ins" name="ins"></input>
+   <label for="ins">I accept the terms and conditions</label><br>
+<button>clickon</button>
+    <input type="reset">
+</fieldset>   
+</form>
+</div>
+</div>
+</body>
+</html> 
+           
