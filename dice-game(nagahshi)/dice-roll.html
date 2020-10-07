@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dice-game</title>
+    <style>
+        .box {
+            padding: 2em;
+            animation: spin 2s;
+        }
+        .cube {
+            font-size: 80px;
+            width: 160px;
+            height: 160px;
+            margin: 80px auto;
+            transform-style: preserve-3d;
+            box-shadow: 5px 5px 150px #666;
+            perspective: 1000px;
+        }
+
+        .side {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            box-shadow: inset 0px 0px 40px #666;
+            color: white;
+            text-align: center;
+            line-height: 2em;
+        }
+
+        .front  { transform: rotateX( 0deg)  translateZ(80px); }
+        .top    { transform: rotateX( 90deg)  translateZ(80px); }
+        .right  { transform: rotateY( 90deg)  translateZ(80px); }
+        .left   { transform: rotateY(-90deg)  translateZ(80px); }
+        .bottom { transform: rotateX(-90deg)  translateZ(80px); }
+        .back   { transform: rotateY(-180deg) translateZ(80px); }
+
+        .cube { perspective-origin: 0%  100%;}
+
+        @keyframes move-origin {
+            0%    { perspective-origin: 0%     0%; }
+            25%   { perspective-origin: 100%   0%; }
+            50%   { perspective-origin: 200% 100%; }
+            75%   { perspective-origin: 0%   200%; }
+            100%  { perspective-origin: 0%     0%; }
+        }
+
+        @keyframes spin {
+            0%   { transform: rotate(360deg); margin-top: -300px }
+            100% { transform: rotate(0); }
+        }
+
+        .myButton {
+            box-shadow: 0px 1px 0px 0px #f0f7fa;
+            background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+            background-color:#33bdef;
+            border-radius:6px;
+            border:1px solid #057fd0;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px -1px 0px #5b6178;
+        }
+        .myButton:hover {
+            background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+            background-color:#019ad2;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+        .separator {
+            border-left: 2px solid;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; align-content: center; justify-content: center">
+    <a id="buttonRoll" href="#" onclick="rollDice()" class="myButton">
+        First to roll
+    </a>
+</div>
+<section>
+    <h1 id="result" style="display: flex; justify-content: center">
+
+    </h1>
+    <div id="board" style="display: flex; justify-content: center">
+
+    </div>
+</section>
+<script>
+    let arrayPLays = []
+    function rollDice () {
+        let btn = document.querySelector('#buttonRoll')
+        btn.textContent = 'Second to roll'
+
+        let firstValue = Math.floor(Math.random() * (6 - 1) + 1)
+        let secondValue = Math.floor(Math.random() * (6 - 1) + 1)
+
+        arrayPLays.push((firstValue + secondValue))
+
+        if (arrayPLays.length === 2) {
+            let result = document.querySelector('#result');
+
+            if (arrayPLays[0] > arrayPLays[1]) {
+                result.textContent = 'First roll win'
+            } else if (arrayPLays[1] > arrayPLays[0]) {
+                result.textContent = 'Second roll win'
+            } else {
+                result.textContent = 'DRAW'
+            }
+
+            arrayPLays = []
+            btn.onclick = function () {
+                document.querySelector('#board').innerHTML = ''
+                result.textContent = ''
+                btn.onclick = rollDice
+                btn.textContent = 'First roll'
+            }
+
+            btn.textContent = 'Clear table'
+
+            let divLine = document.createElement('div')
+            divLine.classList.add('separator')
+            document.querySelector('#board').append(divLine)
+        }
+
+        let firstDice = createDice(firstValue)
+        let secondDice = createDice(secondValue)
+
+        document.querySelector('#board').append(firstDice)
+        document.querySelector('#board').append(secondDice)
+    }
+
+    function createDice (front) {
+        let divBox = document.createElement('div')
+        divBox.classList.add('box')
+
+        let divCube = document.createElement('div')
+        divCube.classList.add('cube')
+
+        divBox.append(createSide(front, divCube))
+
+        return divBox
+    }
+
+    function createSide (valueFront, cube) {
+        let background = (arrayPLays.length ? 'red' : 'skyblue')
+        let front = document.createElement('div')
+        front.classList.add('side')
+        front.style.background = background
+        front.classList.add('front')
+        front.textContent = valueFront
+        cube.append(front)
+
+        let right = document.createElement('div')
+        right.classList.add('side')
+        right.style.background = background
+        right.classList.add('right')
+        right.textContent = 4
+        cube.append(right)
+
+        let left = document.createElement('div')
+        left.classList.add('side')
+        left.style.background = background
+        left.classList.add('left')
+        left.textContent = 2
+        cube.append(left)
+
+        let top = document.createElement('div')
+        top.classList.add('side')
+        top.style.background = background
+        top.classList.add('top')
+        top.textContent = 3
+        cube.append(top)
+
+        let bottom = document.createElement('div')
+        bottom.classList.add('side')
+        bottom.style.background = background
+        bottom.classList.add('bottom')
+        bottom.textContent = 5
+        cube.append(bottom)
+
+        let back = document.createElement('div')
+        back.classList.add('side')
+        back.style.background = background
+        back.classList.add('back')
+        back.textContent = 6
+        cube.append(back)
+
+        return cube
+    }
+</script>
+</body>
+</html>
